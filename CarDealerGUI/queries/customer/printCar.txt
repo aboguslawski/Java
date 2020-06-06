@@ -1,0 +1,10 @@
+SELECT car.brand as 'brand', model.model_name as 'model', model.production_year as 'year', model.generation as 'gen',
+car.price as 'price', car.condition as 'cond.', car.availability as 'availability', address.city as 'city',
+CONCAT(color.r, ' ', color.g, ' ', color.b) as 'color rgb', account.login as 'seller'
+FROM car INNER JOIN model ON car.fk_model = model.id_model
+INNER JOIN branch ON car.fk_branch = branch.id_branch
+INNER JOIN address ON branch.fk_address = address.id_address
+INNER JOIN color ON car.fk_color = color.id_color
+INNER JOIN customer ON car.fk_seller = customer.id_customer
+INNER JOIN personal_info ON customer.fk_pinfo = personal_info.id_pinfo
+INNER JOIN account ON personal_info.fk_account = account.id_account
